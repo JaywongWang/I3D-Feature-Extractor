@@ -13,3 +13,7 @@ ffmpeg -i [video_input_path] -r 16 [video_save_dir]/%d.jpg
 ``` bash
 python feature_extractor_frm.py
 ```
+4. Generate feature h5 file.
+``` bash
+python get_i3d_h5.py
+```

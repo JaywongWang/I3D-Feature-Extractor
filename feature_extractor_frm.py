@@ -102,7 +102,8 @@ def feature_extractor():
             features.append(clip_feature)
 
         features = np.concatenate(features, axis=0)
-        features = features[:n_feat]
+        features = features[:n_feat:2]   # 16 frames per feature  (since 64-frame snippet corresponds to 8 features in I3D)
+
         feat_path = os.path.join(OUTPUT_FEAT_DIR, video_name + '.npy')
 
         print('Saving features and probs for video: %s ...'%video_name)
@@ -120,7 +121,7 @@ if __name__ == "__main__":
                         default='./dataset/Charades/features/i3d/feats_i3d_rgb_npy/',
                         help='Output feature path')
     parser.add_argument('-vpf', '--VIDEO_PATH_FILE', type=str,
-                        default='charades_videos.txt',
+                        default='charades_sta_videos.txt',
                         help='input video list')
     parser.add_argument('-vd', '--VIDEO_DIR', type=str,
                         default='./dataset/Charades/frames_16_fps/',
